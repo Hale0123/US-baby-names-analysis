@@ -1,4 +1,5 @@
 #!/bin/bash
+#Version 1.0.0
 usage(){
 	echo "usage: bn <year> <assigned gender: f|F|m|M|b|B>" >&2
 }
