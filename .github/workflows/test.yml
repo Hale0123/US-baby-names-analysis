@@ -8,7 +8,10 @@ jobs:
   build:						
     runs-on: ubuntu-latest			
     steps:
-      - uses: actions/checkout@v4		
+      - uses: actions/checkout@v4
+
+      - name: Make the script executable
+        run: chmod +x ./test_script        
 
       - name: Run Tests			
         run: ./test_script > test_results.txt		
@@ -18,4 +21,4 @@ jobs:
         uses: actions/upload-artifact@v4	
         with:
           name: Test Results		
-          path: ./test_results.txt	
+          path: ./test_results.txt     
