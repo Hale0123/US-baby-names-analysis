@@ -1,11 +1,11 @@
 #!/bin/bash
 #Version 1.0.0
 usage(){
-	echo "usage: bn <year> <assigned gender: f|F|m|M|b|B>" >&2
+	echo "bn <year> <assigned gender: f|F|m|M|b|B>" >&2
 }
 
 help(){
-	echo "bn Utility - Version 1.0"
+	echo "bn Utility - Version 1.0.0"
 	echo "---------------------------"
 	echo "Search for U.S. baby name rankings by year and gender."
 	echo "Options:"
@@ -26,6 +26,7 @@ rank() {
     # Count total names for male and female
     #local total_female=$(grep -ic ",F," "$file")
     local total_male=$(grep -ic ",M," "$file")
+	local total_female=$(grep -ic ",F," "$file")
 
 	local female_list=$(grep ",F," "$file")
     local male_list=$(grep ",M," "$file")
@@ -77,7 +78,7 @@ else
     		exit 4
 		fi
 	else
-		echo "Badly formatted assigned gender: $2"
+		echo "Badly formatted assigned gender: $2" >&2
 		usage
 		exit 2
 	fi
@@ -113,7 +114,7 @@ while read -r line; do
     for name in $line; do
         # Allow alphabetic characters only
         if [[ ! "$name" =~ ^[a-zA-Z]+$ ]]; then
-            echo "Invalid format for name: $name" >&2
+            echo "Badly formatted name: $name" >&2
             exit 3
         fi
         rank "$name" "$year" "$gender"
