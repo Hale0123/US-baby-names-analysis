@@ -98,5 +98,8 @@ test './bn 2022 F' 3 'Sam2' '' 'Badly formatted name: Sam2'
 test './bn 1111 X' 2 '' '' 'Badly formatted assigned gender: X
 bn <year> <assigned gender: f|F|m|M|b|B>'
 
+# invalid number of arguments error case
+test './bn 1111' 1 '' '' 'bn <year> <assigned gender: f|F|m|M|b|B>'
+
 # return code
 exit $fails
